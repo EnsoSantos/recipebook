@@ -1,0 +1,13 @@
+{% load static %}
+<html lang="en">
+<head>
+    <title>{% block title %}Recipe Book{% endblock %}</title>
+</head>
+<body>
+    <li><a href="/recipes/list/">Recipes</a></li>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

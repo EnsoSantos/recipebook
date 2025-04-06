@@ -65,7 +65,7 @@ def recipes_list(request):
             }
         ]
     }
-    return render(request, "ledger/recipes_list.html",ctx)
+    return render(request, "ledger/recipes-list.html",ctx)
 
 
 def recipe_1(request):
@@ -95,7 +95,7 @@ def recipe_1(request):
         ],
         "link": "/recipe/1"
     }
-    return render(request, "ledger/recipe_1.html",ctx)
+    return render(request, "ledger/recipe-1.html",ctx)
 
 def recipe_2(request):
     ctx = {
@@ -132,4 +132,4 @@ def recipe_2(request):
         ],
         "link": "/recipe/2"
     }
-    return render(request, "ledger/recipe_2.html",ctx)
+    return render(request, "ledger/recipe-2.html",ctx)

@@ -1,14 +1,10 @@
 {% extends "ledger/layout.html" %}
-{% load static %}
 
 {% block content %}
-<h1> Recipe 1 </h1>
-<h2> Ingredients: </h2>
-     <ul>
-        <li> 3pcs tomato </li>
-        <li> 1pc onion </li>
-        <li> 1kg pork </li>
-        <li> 1L water </li>
-        <li> 1 packet sinigang mix </li>
-     </ul>
+   <h2>{{ name }}</h2>
+   <ul>
+      {% for ingredient in ingredients %}
+         <li>{{ ingredient.name }}: {{ ingredient.quantity }}</li>
+      {% endfor %}
+   </ul>
  {% endblock %}

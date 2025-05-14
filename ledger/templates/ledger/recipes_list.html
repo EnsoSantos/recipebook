@@ -2,8 +2,9 @@
 {% load static %}
 
 {% block content %}
-     <ul>
-         <li><a href="/recipe/1/">Recipe 1</a></li>
-         <li><a href="/recipe/2/">Recipe 2</a></li>
-     </ul>
+    <ul>
+        {% for recipe in recipes %}
+            <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a></li>
+        {% endfor %}
+    </ul>
  {% endblock %}

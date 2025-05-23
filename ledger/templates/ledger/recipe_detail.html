@@ -4,6 +4,7 @@
 
    {% if user.is_authenticated %}
       <h2>{{ recipe.name }}</h2>
+      <h3>{{ recipe.author }}</h3>
       <ul>
          {% for recipe_ingredient in recipe_ingredients %}
             <li>{{ recipe_ingredient.ingredient.name }}: {{ recipe_ingredient.quantity }}</li>

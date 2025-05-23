@@ -19,9 +19,11 @@ def recipes_list(request):
 def recipe_detail(request, pk):
     recipe = Recipe.objects.get(pk=pk)
     recipe_ingredients = RecipeIngredient.objects.filter(recipe=recipe)
+    images = recipe.images.all()
     ctx = {
         "recipe": recipe,
-        "recipe_ingredients": recipe_ingredients
+        "recipe_ingredients": recipe_ingredients,
+        "images": images,
     }
     return render(request, "ledger/recipe_detail.html", ctx)
 

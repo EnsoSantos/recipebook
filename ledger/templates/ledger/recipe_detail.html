@@ -11,6 +11,11 @@
             <li>{{ recipe_ingredient.ingredient.name }}: {{ recipe_ingredient.quantity }}</li>
          {% endfor %}
       </ul>
+      {% for image in images %}
+         <img src="{{ image.image.url }}" alt="{{ image.description }}">
+      {% empty %}
+         <p>No images.</p>
+      {% endfor %}
    {% else %}
       <p>Please <a href="/registration/login.html">log in.</a></p>
    {% endif %}

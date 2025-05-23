@@ -1,9 +1,14 @@
 {% extends "ledger/layout.html" %}
-{% load static %}
 
+{% block title %}All Recipes - Recipe Book{% endblock %}
 {% block content %}
-     <ul>
-         <li><a href="/recipe/1/">Recipe 1</a></li>
-         <li><a href="/recipe/2/">Recipe 2</a></li>
-     </ul>
+    {% if user.is_authenticated %}
+        <ul>
+            {% for recipe in recipes %}
+                <li><a href="{{ recipe.get_absolute_url }}"> {{ recipe.name }} </a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Please <a href="/registration/login.html">log in.</a></p>
+     {% endif %}
  {% endblock %}

@@ -1,9 +1,13 @@
 {% extends "ledger/layout.html" %}
 
 {% block content %}
-    <ul>
-        {% for recipe in recipes %}
-            <li><a href="{{ recipe.get_absolute_url }}"> {{ recipe.name }} </a></li>
-        {% endfor %}
-    </ul>
+    {% if user.is_authenticated %}
+        <ul>
+            {% for recipe in recipes %}
+                <li><a href="{{ recipe.get_absolute_url }}"> {{ recipe.name }} </a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Please <a href="">log in.</a></p>
+     {% endif %}
  {% endblock %}

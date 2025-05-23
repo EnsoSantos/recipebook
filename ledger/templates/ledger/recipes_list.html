@@ -8,6 +8,9 @@
                 <li><a href="{{ recipe.get_absolute_url }}"> {{ recipe.name }} </a></li>
             {% endfor %}
         </ul>
+        <footer>
+            <a href="{% url 'recipe_create' %}">Create Recipe</a>
+        </footer>
     {% else %}
         <p>Please <a href="/registration/login.html">log in.</a></p>
      {% endif %}

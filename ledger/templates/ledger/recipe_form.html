@@ -1,0 +1,14 @@
+{% extends "ledger/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2>Create Recipe</h2>
+    </div>
+        <form method="POST" class="update-add-form">
+            {% csrf_token %}
+            {{ recipe_form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+{% endblock %}

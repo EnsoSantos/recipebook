@@ -60,7 +60,7 @@ def recipe_create(request):
             recipe = recipe_form.save(commit=False)
             recipe.author = request.user.profile
             recipe.save()
-            return redirect('recipe_detail', pk=recipe.id)
+            return redirect('ledger:recipe_detail', pk=recipe.id)
     else:
         recipe_form = RecipeForm()
 
@@ -69,3 +69,5 @@ def recipe_create(request):
     }
 
     return render(request, 'ledger/recipe_form.html', ctx)
+
+

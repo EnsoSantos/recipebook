@@ -9,7 +9,7 @@
             {% endfor %}
         </ul>
         <footer>
-            <a href="{% url 'recipe_create' %}">Create Recipe</a>
+            <a href="{% url 'ledger:recipe_create' %}">Create Recipe</a>
         </footer>
     {% else %}
         <p>Please <a href="/registration/login.html">log in.</a></p>

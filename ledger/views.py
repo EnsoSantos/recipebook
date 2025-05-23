@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .forms import RecipeForm, RecipeImageForm
+from .forms import RecipeForm, RecipeImageForm, RecipeIngredientFormSet
 
 @login_required
 def recipes_list(request):
@@ -56,16 +56,26 @@ def logout_view(request):
 def recipe_create(request):
     if request.method == "POST":
         recipe_form = RecipeForm(request.POST)
+        formset = RecipeIngredientFormSet(request.POST)
         if recipe_form.is_valid():
             recipe = recipe_form.save(commit=False)
             recipe.author = request.user.profile
             recipe.save()
+
+            ingredients = formset.save(commit=False)
+            for ingredient in ingredients:
+                ingredient.recipe = recipe
+                ingredient.save()
+
+            
             return redirect('ledger:recipe_detail', pk=recipe.id)
     else:
         recipe_form = RecipeForm()
+        formset = RecipeIngredientFormSet()
 
     ctx = {
         'recipe_form': recipe_form,
+        'formset': formset,
     }
 
     return render(request, 'ledger/recipe_form.html', ctx)

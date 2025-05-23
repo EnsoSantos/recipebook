@@ -1,5 +1,6 @@
 from django import forms
-from .models import Recipe, Ingredient, RecipeIngredient, RecipeImage
+from .models import Recipe, RecipeIngredient, RecipeImage
+from django.forms import inlineformset_factory
 
 
 class RecipeForm(forms.ModelForm):
@@ -13,9 +14,17 @@ class RecipeImageForm(forms.ModelForm):
         model = RecipeImage
         fields = ['image', 'description', ]
 
-class IngredientForm(forms.ModelForm):
+class RecipeIngredientForm(forms.ModelForm):
     class Meta:
-        model = Ingredient
-        fields = ['name']
+        model = RecipeIngredient
+        fields = ['ingredient', 'quantity']
+
+RecipeIngredientFormSet = inlineformset_factory(
+    Recipe,
+    RecipeIngredient,
+    form=RecipeIngredientForm,
+    extra=3,
+    can_delete=False,
+)
 
 

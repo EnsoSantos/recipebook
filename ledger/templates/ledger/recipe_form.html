@@ -7,8 +7,18 @@
         <form method="POST" class="update-add-form">
             {% csrf_token %}
             {{ recipe_form.as_p }}
+            
+            <h3>Ingredients</h3>
+            {{ formset.management_form }}
+            {% for form in formset %}
+                <div class="ingredient-form">
+                    {{ form.as_p }}
+                </div>
+            {% endfor %}
+
             <button type="submit">Submit</button>
         </form>
+        
     </div>
 
 {% endblock %}

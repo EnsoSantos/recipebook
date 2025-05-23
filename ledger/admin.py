@@ -11,6 +11,7 @@ class RecipeIngredientInline(admin.TabularInline):
     extra = 1
 
 class RecipeAdmin(admin.ModelAdmin):
+    exclude = ('author',)
     model = Recipe
     search_fields = ('name', 'author__username')
     list_display = ('name', 'author', 'created_on', 'updated_on')

@@ -7,10 +7,20 @@
       <h2>Recipe Name: {{ recipe.name }}</h2>
       <h3>Author: {{ recipe.author }}</h3>
       <ul>
+         <p>Created on:{{ recipe.created_on }}</p>
+         <p>Updated on: {{ recipe.updated_on }}</p>
          {% for recipe_ingredient in recipe_ingredients %}
             <li>{{ recipe_ingredient.ingredient.name }}: {{ recipe_ingredient.quantity }}</li>
          {% endfor %}
       </ul>
+      {% for image in images %}
+         <img src="{{ image.image.url }}" alt="{{ image.description }}">
+      {% empty %}
+         <p>No images.</p>
+      {% endfor %}
+      <footer>
+         <a href="{% url 'ledger:recipe_image' recipe.pk %}">Add Recipe Image</a>
+     </footer>
    {% else %}
       <p>Please <a href="/registration/login.html">log in.</a></p>
    {% endif %}

@@ -8,7 +8,7 @@ class RecipeForm(forms.ModelForm):
         exclude = ['author', 'created_on', 'updated_on']
         fields = ['name', ]
 
-class RecipeImage(forms.ModelForm):
+class RecipeImageForm(forms.ModelForm):
     class Meta:
         model = RecipeImage
         fields = ['image', 'description', ]

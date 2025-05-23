@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Recipe, RecipeIngredient
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -44,3 +44,7 @@ def login_view(request):
         else:
             error = "Incorrect password for existing user."
     return render(request, "ledger/login.html", {"error": error})
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')

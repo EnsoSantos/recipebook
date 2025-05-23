@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.models import User
+from .forms import RecipeForm
 
 @login_required
 def recipes_list(request):
@@ -50,3 +51,21 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+@login_required
+def recipe_create(request):
+    if request.method == "POST":
+        recipe_form = RecipeForm(request.POST)
+        if recipe_form.is_valid():
+            recipe = recipe_form.save(commit=False)
+            recipe.author = request.user.profile
+            recipe.save()
+            return redirect('recipe_detail', pk=recipe.id)
+    else:
+        recipe_form = RecipeForm()
+
+    ctx = {
+        'recipe_form': recipe_form,
+    }
+
+    return render(request, 'ledger/recipe_form.html', ctx)

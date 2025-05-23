@@ -79,12 +79,12 @@ def recipe_image(request, pk):
         return redirect('ledger:recipes_list')
 
     if request.method == 'POST':
-        form = RecipeImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            recipe_image = form.save(commit=False)
-            recipe_image.recipe = recipe
-            recipe_image.save()
-            return redirect('ledger:recipe_detail', pk=recipe.pk)
+        recipe_image_form = RecipeImageForm(request.POST, request.FILES)
+        if recipe_image_form.is_valid():
+            recipe_image_form = recipe_image_form.save(commit=False)
+            recipe_image_form.recipe = recipe
+            recipe_image_form.save()
+            return redirect('ledger:recipe_detail', pk=recipe.id)
     else:
         recipe_image_form = RecipeImageForm()
 
@@ -93,3 +93,4 @@ def recipe_image(request, pk):
         'recipe': recipe,
     }
     return render(request, 'ledger/recipe_image_form.html', context)
+

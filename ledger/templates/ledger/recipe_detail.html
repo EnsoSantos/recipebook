@@ -17,7 +17,7 @@
          <p>No images.</p>
       {% endfor %}
       <footer>
-         <a href="{% url 'ledger:recipe_image' %}">Add Recipe Image</a>
+         <a href="{% url 'ledger:recipe_image' recipe.pk %}">Add Recipe Image</a>
      </footer>
    {% else %}
       <p>Please <a href="/registration/login.html">log in.</a></p>

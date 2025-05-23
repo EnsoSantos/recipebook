@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+@login_required
 def recipes_list(request):
     recipes = Recipe.objects.all()
     ctx = {
@@ -30,15 +31,16 @@ def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
+        
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("recipes_list"))
+            return HttpResponseRedirect(reverse("ledger:recipes_list"))
+    
         if not User.objects.filter(username=username).exists():
             user = User.objects.create_user(username=username, password=password)
             login(request, user)
-            return HttpResponseRedirect(reverse("recipes_list"))
+            return HttpResponseRedirect(reverse("ledger:recipes_list"))
         else:
             error = "Incorrect password for existing user."
-
     return render(request, "ledger/login.html", {"error": error})

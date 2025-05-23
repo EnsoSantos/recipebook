@@ -20,7 +20,10 @@ class Ingredient(models.Model):
         return reverse('ingredient_detail', args=[self.pk])
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=100) 
+    author = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL, related_name='recipes')
+    name = models.CharField(max_length=100)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
